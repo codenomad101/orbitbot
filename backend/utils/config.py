@@ -20,7 +20,7 @@ class Config:
     
     # Vector Store Configuration
     VECTOR_STORE_PATH = os.getenv("VECTOR_STORE_PATH", "./data/vector_store")
-    CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", 1000))
+    CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", 256))
     print("CHUNK_SIZE =", CHUNK_SIZE)
 
     CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", 200))

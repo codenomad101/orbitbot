@@ -11,7 +11,7 @@ st.set_page_config(
     page_title="SKF Orbitbot - AI Assistant",
     page_icon="🤖",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded"  # Start with sidebar opened
 )
 
 # Initialize session state
@@ -34,12 +34,12 @@ st.markdown("""
 }
 
 .stApp {
-    background-color: #36454F;
+    background-color: #3d4149;
 }
 
 /* Main chat interface styling */
 .main-container {
-    max-width: 900px;
+    max-width: 400px;
     margin: 0 auto;
     background: white;
     border-radius: 20px;
@@ -47,7 +47,9 @@ st.markdown("""
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
-
+.sidebar-card {
+    display: none;
+}
 /* Chat message styling */
 .user-message {
     background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
@@ -56,6 +58,7 @@ st.markdown("""
     border-radius: 20px 20px 5px 20px;
     margin: 1rem 0;
     margin-left: 15%;
+    margin-right: 15%;
     position: relative;
     box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
     animation: slideInRight 0.3s ease-out;
@@ -68,6 +71,7 @@ st.markdown("""
     border-radius: 20px 20px 20px 5px;
     margin: 1rem 0;
     margin-right: 15%;
+    margin-left: 15%;
     position: relative;
     box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);
     animation: slideInLeft 0.3s ease-out;
@@ -119,44 +123,82 @@ st.markdown("""
     font-size: 18px;
 }
 
-/* Sidebar styling */
+/* Sidebar styling with light blue background */
 .css-1d391kg, [data-testid="stSidebar"] {
-    background: #f0f2f6;
+    background: ##282C35;
 }
 
+.css-1d391kg .css-1v0mbdj, [data-testid="stSidebar"] > div {
+    background: ##282C35 !important;
+}
+
+/* Sidebar text styling - all white */
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
 [data-testid="stSidebar"] h3,
 [data-testid="stSidebar"] h4,
+[data-testid="stSidebar"] h5,
+[data-testid="stSidebar"] h6,
 [data-testid="stSidebar"] p,
-[data-testid="stSidebar"] .stMarkdown {
-    color: #1976D2;
+[data-testid="stSidebar"] .stMarkdown,
+[data-testid="stSidebar"] .stMarkdown div,
+[data-testid="stSidebar"] .stMarkdown p,
+[data-testid="stSidebar"] .stText,
+[data-testid="stSidebar"] .stCaption,
+[data-testid="stSidebar"] label {
+    color: white !important;
+}
+
+/* Sidebar metric styling */
+[data-testid="stSidebar"] [data-testid="stMetric"] {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(10px);
+}
+
+[data-testid="stSidebar"] [data-testid="stMetricLabel"],
+[data-testid="stSidebar"] [data-testid="stMetricValue"] {
+    color: white !important;
+}
+
+/* Individual cards for sidebar sections */
+.sidebar-card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-header {
-    background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
+    background: linear-gradient(135deg, #0D47A1 0%, #1976D2 100%);
     padding: 1.5rem;
-    margin: -1rem -1rem 2rem -1rem;
+    margin: -1rem -1rem 1rem -1rem;
     border-radius: 15px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+    box-shadow: 0 4px 15px rgba(13, 71, 161, 0.3);
 }
 
 .sidebar-title {
-    color: white;
+    color: white !important;
     font-size: 1.5rem;
     font-weight: 700;
     margin: 0;
 }
 
 .sidebar-subtitle {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9) !important;
     font-size: 0.9rem;
     margin: 0.5rem 0 0 0;
 }
 
+/* Status styling */
 .status-healthy {
     background: linear-gradient(135deg, #4CAF50, #45a049);
     border: none;
-    color: white;
+    color: white !important;
     padding: 0.8rem;
     border-radius: 12px;
     text-align: center;
@@ -168,13 +210,63 @@ st.markdown("""
 .status-unhealthy {
     background: linear-gradient(135deg, #f44336, #d32f2f);
     border: none;
-    color: white;
+    color: white !important;
     padding: 0.8rem;
     border-radius: 12px;
     text-align: center;
     margin: 0.5rem 0;
     box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
     font-weight: 500;
+}
+
+/* Sidebar buttons styling */
+[data-testid="stSidebar"] .stButton > button {
+    background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 0.5rem 1rem !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+[data-testid="stSidebar"] .stButton > button:hover {
+    background: linear-gradient(135deg, #0D47A1 0%, #1976D2 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4) !important;
+}
+
+/* File uploader in sidebar */
+[data-testid="stSidebar"] .stFileUploader > div {
+    border: 2px dashed rgba(255, 255, 255, 0.5) !important;
+    border-radius: 15px;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+[data-testid="stSidebar"] .stFileUploader > div:hover {
+    border-color: rgba(255, 255, 255, 0.8) !important;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+[data-testid="stSidebar"] .stFileUploader label {
+    color: white !important;
+}
+
+/* Sidebar slider styling */
+[data-testid="stSidebar"] .stSlider > div > div > div > div {
+    background-color: white !important;
+}
+
+[data-testid="stSidebar"] .stSlider > div > div > div > div > div {
+    background-color: #282C35 !important;
+}
+
+/* Sidebar checkbox styling */
+[data-testid="stSidebar"] .stCheckbox > label > div[data-testid="stWidgetLabel"] {
+    color: white !important;
 }
 
 /* Source styling */
@@ -233,7 +325,7 @@ st.markdown("""
     line-height: 1.6;
 }
 
-/* Input styling */
+/* Input styling with 15% margin */
 .stTextInput > div > div > input {
     border-radius: 25px;
     border: 2px solid #1976D2;
@@ -243,6 +335,7 @@ st.markdown("""
     color: #333;
     box-shadow: 0 4px 15px rgba(25, 118, 210, 0.1);
     transition: all 0.3s ease;
+    height: 80px;
 }
 
 .stTextInput > div > div > input:focus {
@@ -283,20 +376,6 @@ st.markdown("""
 .stButton > button[kind="secondary"]:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(187, 222, 251, 0.4);
-}
-
-/* File uploader styling */
-.stFileUploader > div {
-    border: 2px dashed #1976D2;
-    border-radius: 15px;
-    padding: 2rem;
-    background: rgba(25, 118, 210, 0.05);
-    transition: all 0.3s ease;
-}
-
-.stFileUploader > div:hover {
-    border-color: #0D47A1;
-    background: rgba(13, 71, 161, 0.05);
 }
 
 /* Metrics styling */
@@ -343,6 +422,27 @@ header {
     color: #1976D2;
 }
 
+/* Sidebar expander styling */
+[data-testid="stSidebar"] .streamlit-expanderHeader {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 10px !important;
+    color: white !important;
+    font-weight: 600 !important;
+    backdrop-filter: blur(10px);
+}
+
+[data-testid="stSidebar"] .streamlit-expanderHeader:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+}
+
+[data-testid="stSidebar"] .streamlit-expanderContent {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0 0 10px 10px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-top: none !important;
+}
+
 /* Expander styling */
 .streamlit-expanderHeader {
     background: rgba(25, 118, 210, 0.1);
@@ -376,16 +476,18 @@ header {
     background: linear-gradient(135deg, #0D47A1, #1976D2);
 }
 
-/* Chat input container */
+/* Chat input container with 15% margins */
 .chat-input-container {
     position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 15%;
+    right: 15%;
     background: white;
     padding: 1rem;
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
     z-index: 999;
+    border-radius: 20px 20px 0 0;
+    display: none;
 }
 
 /* Example questions */
@@ -410,6 +512,32 @@ header {
 .example-question:hover {
     background: #BBDEFB;
     transform: translateY(-2px);
+}
+
+/* Sidebar toggle button */
+.sidebar-toggle {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+    transition: all 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4);
 }
 </style>
 """, unsafe_allow_html=True)
@@ -520,7 +648,8 @@ def main():
         </div>
         """, unsafe_allow_html=True)
         
-        # System Status Section
+        # System Status Section - Card 1
+        st.markdown('<div class="sidebar-card">', unsafe_allow_html=True)
         st.markdown("### ⚡ System Status")
         health_ok, health_data = check_api_health()
         
@@ -530,11 +659,12 @@ def main():
             st.markdown('<div class="status-unhealthy">🔴 Connection Failed</div>', unsafe_allow_html=True)
             st.error("🚫 Backend not accessible at http://127.0.0.1:8000")
             st.info("💡 Please start the backend server to continue")
+            st.markdown('</div>', unsafe_allow_html=True)
             return
+        st.markdown('</div>', unsafe_allow_html=True)
         
-        st.markdown("---")
-        
-        # Document Upload Section
+        # Document Upload Section - Card 2
+        st.markdown('<div class="sidebar-card">', unsafe_allow_html=True)
         st.markdown("### 📤 Upload Documents")
         
         uploaded_file = st.file_uploader(
@@ -544,24 +674,22 @@ def main():
         )
         
         if uploaded_file is not None:
-            col1, col2 = st.columns([3, 1])
-            with col1:
-                st.markdown(f"**📄 {uploaded_file.name}**")
-                st.caption(f"💾 Size: {uploaded_file.size:,} bytes")
-            with col2:
-                if st.button("🚀 Upload", type="primary", use_container_width=True):
-                    with st.spinner("🔄 Processing document..."):
-                        success, result = upload_file(uploaded_file)
-                        if success:
-                            st.success("✅ Successfully uploaded!")
-                            time.sleep(1)
-                            st.rerun()
-                        else:
-                            st.error("❌ Upload failed")
+            st.markdown(f"**📄 {uploaded_file.name}**")
+            st.caption(f"💾 Size: {uploaded_file.size:,} bytes")
+            
+            if st.button("🚀 Upload", type="primary", use_container_width=True, key="upload_btn"):
+                with st.spinner("🔄 Processing document..."):
+                    success, result = upload_file(uploaded_file)
+                    if success:
+                        st.success("✅ Successfully uploaded!")
+                        time.sleep(1)
+                        st.rerun()
+                    else:
+                        st.error("❌ Upload failed")
+        st.markdown('</div>', unsafe_allow_html=True)
         
-        st.markdown("---")
-        
-        # Document Management Section
+        # Document Management Section - Card 3
+        st.markdown('<div class="sidebar-card">', unsafe_allow_html=True)
         st.markdown("### 📚 Knowledge Base")
         
         docs_ok, docs_data = get_documents()
@@ -573,27 +701,28 @@ def main():
                 st.metric("🧩 Text Chunks", docs_data.get("total_chunks", 0))
             
             if docs_data.get("documents"):
-                st.markdown("**📋 Document Library:**")
-                for doc in docs_data["documents"]:
-                    with st.container():
-                        col1, col2 = st.columns([4, 1])
-                        with col1:
-                            st.markdown(f"**📄 {doc['filename']}**")
-                            st.caption(f"🧩 {doc['chunks']} chunks processed")
-                        with col2:
-                            if st.button("🗑️", key=f"del_{doc['filename']}", help="Delete document", use_container_width=True):
-                                with st.spinner("Deleting..."):
-                                    success, result = delete_document(doc['filename'])
-                                    if success:
-                                        st.success("🗑️ Deleted!")
-                                        time.sleep(1)
-                                        st.rerun()
-                                    else:
-                                        st.error("❌ Delete failed")
+                with st.expander("📋 **Document Library** (Click to expand)", expanded=True):
+                    for doc in docs_data["documents"]:
+                        with st.container():
+                            col1, col2 = st.columns([4, 1])
+                            with col1:
+                                st.markdown(f"**📄 {doc['filename']}**")
+                                st.caption(f"🧩 {doc['chunks']} chunks processed")
+                            with col2:
+                                if st.button("🗑️", key=f"del_{doc['filename']}", help="Delete document", use_container_width=True):
+                                    with st.spinner("Deleting..."):
+                                        success, result = delete_document(doc['filename'])
+                                        if success:
+                                            st.success("🗑️ Deleted!")
+                                            time.sleep(1)
+                                            st.rerun()
+                                        else:
+                                            st.error("❌ Delete failed")
+                            st.markdown("---")  # Add separator between documents
+        st.markdown('</div>', unsafe_allow_html=True)
         
-        st.markdown("---")
-        
-        # Settings Section
+        # Settings Section - Card 4
+        st.markdown('<div class="sidebar-card">', unsafe_allow_html=True)
         st.markdown("### ⚙️ Assistant Settings")
         top_k = st.slider("🔍 Sources per response", 1, 10, 5, help="Number of document sources to reference")
         show_sources = st.checkbox("📚 Show source references", value=True, help="Display document sources used in responses")
@@ -605,6 +734,7 @@ def main():
             st.success("🗑️ Conversation cleared!")
             time.sleep(1)
             st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
     
     # Main chat interface
     st.markdown('<div class="main-container">', unsafe_allow_html=True)
@@ -681,7 +811,7 @@ def main():
     
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Chat input at the bottom
+    # Chat input at the bottom with 15% margins
     st.markdown('<div class="chat-input-container">', unsafe_allow_html=True)
     
     # Handle example question if set
