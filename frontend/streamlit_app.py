@@ -10,7 +10,7 @@ from datetime import datetime
 st.set_page_config(
     page_title="SKF Orbitbot - AI Assistant",
     page_icon="🤖",
-    layout="wide",
+    layout="centered",
     initial_sidebar_state="expanded"  # Start with sidebar opened
 )
 
@@ -34,7 +34,7 @@ st.markdown("""
 }
 
 .stApp {
-    background-color: #3d4149;
+    background-color: #2E5090;
 }
 
 /* Main chat interface styling */
@@ -57,8 +57,8 @@ st.markdown("""
     padding: 1.2rem 1.8rem;
     border-radius: 20px 20px 5px 20px;
     margin: 1rem 0;
-    margin-left: 15%;
-    margin-right: 15%;
+    # margin-left: 15%;
+    # margin-right: 15%;
     position: relative;
     box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
     animation: slideInRight 0.3s ease-out;
@@ -70,8 +70,8 @@ st.markdown("""
     padding: 1.2rem 1.8rem;
     border-radius: 20px 20px 20px 5px;
     margin: 1rem 0;
-    margin-right: 15%;
-    margin-left: 15%;
+    # margin-right: 15%;
+    # margin-left: 15%;
     position: relative;
     box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);
     animation: slideInLeft 0.3s ease-out;
@@ -741,8 +741,8 @@ def main():
     
     # Welcome message when no conversation exists
     if not st.session_state.messages:
-        st.markdown("""
-        <div class="welcome-container">
+          st.markdown("""
+          <div class="welcome-container">
             <div class="welcome-title">🤖 SKF Orbitbot</div>
             <div class="welcome-subtitle">Your Advanced AI Document Assistant</div>
             <div class="welcome-description">
@@ -751,53 +751,53 @@ def main():
                 start asking questions!
             </div>
         </div>
-        """, unsafe_allow_html=True)
+    #     """, unsafe_allow_html=True)
         
-        # Quick start tips
-        st.markdown("### 🚀 Quick Start Guide")
-        col1, col2, col3 = st.columns(3)
+    #     # Quick start tips
+    #     st.markdown("### 🚀 Quick Start Guide")
+    #     col1, col2, col3 = st.columns(3)
         
-        with col1:
-            st.markdown("""
-            **📤 Step 1: Upload**
-            - Use the sidebar to upload your documents
-            - Supported: PDF, DOCX, TXT files
-            - Files are automatically processed
-            """)
+    #     with col1:
+    #         st.markdown("""
+    #         **📤 Step 1: Upload**
+    #         - Use the sidebar to upload your documents
+    #         - Supported: PDF, DOCX, TXT files
+    #         - Files are automatically processed
+    #         """)
         
-        with col2:
-            st.markdown("""
-            **💭 Step 2: Ask Questions**
-            - Type your questions in the chat below
-            - Ask about content, summaries, insights
-            - Reference specific topics or sections
-            """)
+    #     with col2:
+    #         st.markdown("""
+    #         **💭 Step 2: Ask Questions**
+    #         - Type your questions in the chat below
+    #         - Ask about content, summaries, insights
+    #         - Reference specific topics or sections
+    #         """)
         
-        with col3:
-            st.markdown("""
-            **🎯 Step 3: Get Answers**
-            - Receive AI-powered responses
-            - View source references
-            - Continue the conversation naturally
-            """)
+    #     with col3:
+    #         st.markdown("""
+    #         **🎯 Step 3: Get Answers**
+    #         - Receive AI-powered responses
+    #         - View source references
+    #         - Continue the conversation naturally
+    #         """)
         
-        # Example questions
-        st.markdown("### 💡 Example Questions")
-        examples = [
-            "What is this document about?",
-            "Summarize the key findings",
-            "What are the main recommendations?",
-            "Explain the technical details",
-            "What problems does this solve?"
-        ]
+    #     # Example questions
+    #     st.markdown("### 💡 Example Questions")
+    #     examples = [
+    #         "What is this document about?",
+    #         "Summarize the key findings",
+    #         "What are the main recommendations?",
+    #         "Explain the technical details",
+    #         "What problems does this solve?"
+    #     ]
         
-        cols = st.columns(3)
-        for i, example in enumerate(examples):
-            with cols[i % 3]:
-                if st.button(example, key=f"ex_{i}", use_container_width=True):
-                    st.session_state.chat_input_key += 1
-                    st.session_state.example_question = example
-                    st.rerun()
+        # cols = st.columns(3)
+        # for i, example in enumerate(examples):
+        #     with cols[i % 3]:
+        #         if st.button(example, key=f"ex_{i}", use_container_width=True):
+        #             st.session_state.chat_input_key += 1
+        #             st.session_state.example_question = example
+        #             st.rerun()
     
     # Display chat messages
     for message in st.session_state.messages:
