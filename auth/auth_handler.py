@@ -158,3 +158,4 @@ class AuthHandler:
 
 # Global auth handler instance
 auth_handler = AuthHandler()
+

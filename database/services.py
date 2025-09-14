@@ -279,3 +279,4 @@ class LogService:
     def get_system_logs(self, limit: int = 100) -> List[SystemLog]:
         """Get system logs"""
         return self.db.query(SystemLog).order_by(desc(SystemLog.created_at)).limit(limit).all()
+
